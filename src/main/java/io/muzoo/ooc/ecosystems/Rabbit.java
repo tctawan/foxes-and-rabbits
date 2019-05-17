@@ -104,38 +104,5 @@ public class Rabbit extends Animal {
         return age >= BREEDING_AGE;
     }
 
-    /**
-     * Check whether the rabbit is alive or not.
-     *
-     * @return true if the rabbit is still alive.
-     */
-    public boolean isAlive() {
-        return alive;
-    }
 
-    /**
-     * Tell the rabbit that it's dead now :(
-     */
-    public void setEaten() {
-        alive = false;
-    }
-
-    /**
-     * Set the animal's location.
-     *
-     * @param row The vertical coordinate of the location.
-     * @param col The horizontal coordinate of the location.
-     */
-    public void setLocation(int row, int col) {
-        this.location = new Location(row, col);
-    }
-
-    /**
-     * Set the rabbit's location.
-     *
-     * @param location The rabbit's location.
-     */
-    public void setLocation(Location location) {
-        this.location = location;
-    }
 }
