@@ -10,7 +10,7 @@ import java.util.Random;
  * @author David J. Barnes and Michael Kolling
  * @version 2002.10.28
  */
-public class Rabbit {
+public class Rabbit extends Animal {
     // Characteristics shared by all rabbits (static fields).
 
     // The age at which a rabbit can start to breed.
@@ -26,12 +26,6 @@ public class Rabbit {
 
     // Individual characteristics (instance fields).
 
-    // The rabbit's age.
-    private int age;
-    // Whether the rabbit is alive or not.
-    private boolean alive;
-    // The rabbit's position
-    private Location location;
 
     /**
      * Create a new rabbit. A rabbit may be created with age
@@ -40,8 +34,7 @@ public class Rabbit {
      * @param randomAge If true, the rabbit will have a random age.
      */
     public Rabbit(boolean randomAge) {
-        age = 0;
-        alive = true;
+        super();
         if (randomAge) {
             age = rand.nextInt(MAX_AGE);
         }

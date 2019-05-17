@@ -11,7 +11,7 @@ import java.util.Random;
  * @author David J. Barnes and Michael Kolling
  * @version 2002.10.28
  */
-public class Fox {
+public class Fox extends Animal {
     // Characteristics shared by all foxes (static fields).
 
     // The age at which a fox can start to breed.
@@ -30,12 +30,6 @@ public class Fox {
 
     // Individual characteristics (instance fields).
 
-    // The fox's age.
-    private int age;
-    // Whether the fox is alive or not.
-    private boolean alive;
-    // The fox's position
-    private Location location;
     // The fox's food level, which is increased by eating rabbits.
     private int foodLevel;
 
@@ -46,8 +40,7 @@ public class Fox {
      * @param randomAge If true, the fox will have random age and hunger level.
      */
     public Fox(boolean randomAge) {
-        age = 0;
-        alive = true;
+        super();
         if (randomAge) {
             age = rand.nextInt(MAX_AGE);
             foodLevel = rand.nextInt(RABBIT_FOOD_VALUE);
