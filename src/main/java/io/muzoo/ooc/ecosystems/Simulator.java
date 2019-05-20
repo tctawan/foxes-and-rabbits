@@ -101,17 +101,9 @@ public class Simulator {
         newAnimals.clear();
 
         // let all animals act
-        for (Iterator iter = animals.iterator(); iter.hasNext(); ) {
-            Object animal = iter.next();
-            if (animal instanceof Rabbit) {
-                Rabbit rabbit = (Rabbit) animal;
-                rabbit.run(updatedField, newAnimals);
-            } else if (animal instanceof Fox) {
-                Fox fox = (Fox) animal;
-                fox.hunt(field, updatedField, newAnimals);
-            } else {
-                System.out.println("found unknown animal");
-            }
+        for (Iterator<Animal> iter = animals.iterator(); iter.hasNext(); ) {
+            Animal animal = iter.next();
+            animal.act(updatedField,newAnimals);
         }
         // add new born animals to the list of animals
         animals.addAll(newAnimals);
@@ -151,12 +143,12 @@ public class Simulator {
         for (int row = 0; row < field.getDepth(); row++) {
             for (int col = 0; col < field.getWidth(); col++) {
                 if (rand.nextDouble() <= FOX_CREATION_PROBABILITY) {
-                    Fox fox = new Fox(true);
+                    Fox fox = new Fox(field,true);
                     animals.add(fox);
                     fox.setLocation(row, col);
                     field.place(fox, row, col);
                 } else if (rand.nextDouble() <= RABBIT_CREATION_PROBABILITY) {
-                    Rabbit rabbit = new Rabbit(true);
+                    Rabbit rabbit = new Rabbit(field,true);
                     animals.add(rabbit);
                     rabbit.setLocation(row, col);
                     field.place(rabbit, row, col);

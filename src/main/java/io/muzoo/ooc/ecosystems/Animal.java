@@ -1,18 +1,17 @@
 package io.muzoo.ooc.ecosystems;
 
-public class Animal {
+import java.util.List;
+
+abstract public class Animal {
 
     protected int age;
     protected boolean alive;
     protected Location location;
+    protected Field currentField;
 
     public Animal(){
         age = 0;
         alive = true;
-    }
-    
-    public Location getLocation(){
-        return this.location;
     }
 
     public void setLocation(int row, int col) {
@@ -33,4 +32,6 @@ public class Animal {
     }
 
     public void setDead() {this.alive = false;}
+
+    abstract public void act(Field updatedField, List newAnimals);
 }

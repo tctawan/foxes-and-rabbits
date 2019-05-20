@@ -39,8 +39,9 @@ public class Fox extends Animal {
      *
      * @param randomAge If true, the fox will have random age and hunger level.
      */
-    public Fox(boolean randomAge) {
+    public Fox(Field field,boolean randomAge) {
         super();
+        currentField = field;
         if (randomAge) {
             age = rand.nextInt(MAX_AGE);
             foodLevel = rand.nextInt(RABBIT_FOOD_VALUE);
@@ -59,14 +60,14 @@ public class Fox extends Animal {
      * @param updatedField The field to transfer to.
      * @param newFoxes     A list to add newly born foxes to.
      */
-    public void hunt(Field currentField, Field updatedField, List newFoxes) {
+    public void act(Field updatedField, List newFoxes) {
         incrementAge();
         incrementHunger();
         if (alive) {
             // New foxes are born into adjacent locations.
             int births = breed();
             for (int b = 0; b < births; b++) {
-                Fox newFox = new Fox(false);
+                Fox newFox = new Fox(updatedField,false);
                 newFoxes.add(newFox);
                 Location loc = updatedField.randomAdjacentLocation(location);
                 newFox.setLocation(loc);
@@ -84,6 +85,7 @@ public class Fox extends Animal {
                 // can neither move nor stay - overcrowding - all locations taken
                 alive = false;
             }
+            currentField = updatedField;
         }
     }
 
