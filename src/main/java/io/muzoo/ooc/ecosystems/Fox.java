@@ -51,15 +51,6 @@ public class Fox extends Animal {
         }
     }
 
-    /**
-     * This is what the fox does most of the time: it hunts for
-     * rabbits. In the process, it might breed, die of hunger,
-     * or die of old age.
-     *
-     * @param currentField The field currently occupied.
-     * @param updatedField The field to transfer to.
-     * @param newFoxes     A list to add newly born foxes to.
-     */
     public void act(Field updatedField, List newFoxes) {
         incrementAge();
         incrementHunger();
@@ -89,15 +80,6 @@ public class Fox extends Animal {
         }
     }
 
-    /**
-     * Increase the age. This could result in the fox's death.
-     */
-    private void incrementAge() {
-        age++;
-        if (age > MAX_AGE) {
-            alive = false;
-        }
-    }
 
     /**
      * Make this fox more hungry. This could result in the fox's death.
@@ -134,25 +116,11 @@ public class Fox extends Animal {
         return null;
     }
 
-    /**
-     * Generate a number representing the number of births,
-     * if it can breed.
-     *
-     * @return The number of births (may be zero).
-     */
-    private int breed() {
-        int births = 0;
-        if (canBreed() && rand.nextDouble() <= BREEDING_PROBABILITY) {
-            births = rand.nextInt(MAX_LITTER_SIZE) + 1;
-        }
-        return births;
-    }
-
-    /**
-     * A fox can breed if it has reached the breeding age.
-     */
-    private boolean canBreed() {
-        return age >= BREEDING_AGE;
+    public int getMaxAge(){return MAX_AGE;}
+    public double getBreedingProp(){return  BREEDING_PROBABILITY;}
+    public int getMaxLitterSize(){return MAX_LITTER_SIZE;}
+    public int getBreedingAge() {
+        return BREEDING_AGE;
     }
 
 }
